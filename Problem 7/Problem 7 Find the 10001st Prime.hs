@@ -8,14 +8,14 @@ findPrime n 0 = 1
 findPrime (x:xs) 1 = x
 findPrime (x:xs) m 
 	| (length (x:xs)) == m 	= x
-	| otherwise 		= findPrime ((nextPrime (x+1) xs):x:xs) m
+	| otherwise 			= findPrime ((nextPrime (x+1) xs):x:xs) m
 
 
 nextPrime :: Integer -> [Integer] -> Integer
 nextPrime n m
-	| prime n m 	= n
-	| even n 	 	= nextPrime (n+1) m
-	| otherwise 	= nextPrime (n+2) m
+	| prime n m = n
+	| even n 	= nextPrime (n+1) m
+	| otherwise = nextPrime (n+2) m
 
 
 -- Function prime
@@ -28,7 +28,7 @@ nextPrime n m
 prime :: Integer -> [Integer] ->  Bool
 
 prime n xs
-	| n == 2															= True
-	| (even n) 															= False
-	| (length ([x | x <- xs, mod n x == 0]) == 0)						= True
-	| otherwise 														= False
+	| n == 2										= True
+	| (even n) 										= False
+	| (length ([x | x <- xs, mod n x == 0]) == 0)	= True
+	| otherwise 									= False
