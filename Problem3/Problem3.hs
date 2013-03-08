@@ -32,7 +32,7 @@ primeFactors x = filter prime (divisors x)
 prime :: Integer -> Bool
 
 prime n
-	| (divisors n) == [1,n]	= True
+	| (divisors n) == [n,1]	= True
 	| otherwise 			= False
 
 
