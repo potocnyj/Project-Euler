@@ -9,6 +9,8 @@ Don't look at the code if you want to solve them yourself!
 Problems solved so far:
 - Problem 3:
   - Haskell Solution
+- Problem 4:
+  - Haskell Solution
 - Problem 5:
   - Haskell Solution
 - Problem 6:
