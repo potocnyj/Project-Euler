@@ -21,3 +21,5 @@ Problems solved so far:
   - Haskell Solution
 - Problem 7:
   - Haskell Solution
+- Problem 8:
+  - Haskell Solution
