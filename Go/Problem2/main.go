@@ -16,13 +16,32 @@ import (
 */
 func main() {
 	const fourMil = 4000000
-	seq := getFibTermsFilter(fourMil, isEven)
+
+	fmt.Printf("total of even Fibonnaci numbers up to %d: %d\n", fourMil, sumEvenFibTerms(fourMil))
+}
+
+// sumEvenFibTerms is the inline equivalent of
+// summing the results from:
+//
+// getFibTermsFilter(limit, isEven)
+//
+// It's faster, but not as fun :P
+func sumEvenFibTerms(limit int) int {
 	sum := 0
-	for n := range seq {
-		sum += n
+	// Generate a fibonacci sequence iteratively by recording n-1 and n-2
+	// in memory and updating the terms as we send them out.
+	nMinus2 := 0
+	nMinus1 := 0
+	for n := 1; n < limit; n = nMinus1 + nMinus2 {
+		if isEven(n) {
+			sum += n
+		}
+
+		nMinus2 = nMinus1
+		nMinus1 = n
 	}
 
-	fmt.Printf("total of even Fibonnaci numbers up to %d: %d\n", fourMil, sum)
+	return sum
 }
 
 func isEven(x int) bool {

@@ -55,3 +55,13 @@ func BenchmarkGetFibTermsEven(b *testing.B) {
 		} // drain channel
 	}
 }
+
+var benchmarkRes = 0
+
+func BenchmarkSumEvenFibTerms(b *testing.B) {
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		benchmarkRes = sumEvenFibTerms(4000000)
+	}
+}
