@@ -1,23 +1,25 @@
 package main
 
 import (
+	"reflect"
 	"testing"
 )
 
-func TestSieve(t *testing.T) {
-	expected := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
+func TestGetPrimeFactors(t *testing.T) {
+	// The prime factors of 13195 are 5, 7, 13 and 29.
+	expected := []int64{5, 7, 13, 29}
+	factors := getPrimeFactors(13195)
 
-	out := sieve(30)
-	i := 0
-	for num := range out {
-		if i == len(expected) {
-			t.Fatalf("received more primes than expected: %d", i)
-		}
+	if !reflect.DeepEqual(factors, expected) {
+		t.Errorf("got factors %v\nexpected %v", factors, expected)
+	}
+}
 
-		if expected[i] != num {
-			t.Errorf("expected output %d to be %d, got %d instead.", i, expected[i], num)
-		}
+func BenchmarkGetPrimeFactors(b *testing.B) {
+	b.ReportAllocs()
+	b.ResetTimer()
 
-		i++
+	for i := 0; i < b.N; i++ {
+		getPrimeFactors(13195)
 	}
 }
